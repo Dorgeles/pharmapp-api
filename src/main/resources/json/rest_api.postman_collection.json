@@ -1,0 +1,1819 @@
+
+{
+
+    "info": {
+        "_postman_id": "df67b7b8-9986-4f5f-836e-e0af58c8e968",
+        "name": "ci_wdy_pharmapp",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+		{
+			"name": "adresse",
+			"item": [
+                {
+					"name": "adresse.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"libelle\": \"\", \t\t\t\"adresse\": \"\", \t\t\t\"latitude\": \"\", \t\t\t\"longitude\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/adresse/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"adresse",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "adresse.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"libelle\": \"\", \t\t\t\"adresse\": \"\", \t\t\t\"latitude\": \"\", \t\t\t\"longitude\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/adresse/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "adresse",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "adresse.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/adresse/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "adresse",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "adresse.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"libelle\": \"\", \t\t\"adresse\": \"\", \t\t\"latitude\": \"\", \t\t\"longitude\": \"\", \t\t\"userId\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/adresse/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "adresse",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "assurances",
+			"item": [
+                {
+					"name": "assurances.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"libelle\": \"\", \t\t\t\"imageUrl\": \"\", \t\t\t\"metaData\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/assurances/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"assurances",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "assurances.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"libelle\": \"\", \t\t\t\"imageUrl\": \"\", \t\t\t\"metaData\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/assurances/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "assurances",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "assurances.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/assurances/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "assurances",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "assurances.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"libelle\": \"\", \t\t\"imageUrl\": \"\", \t\t\"metaData\": \"\", \t\t\"userId\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/assurances/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "assurances",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "commande",
+			"item": [
+                {
+					"name": "commande.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"prixTotal\": \"\", \t\t\t\"modeRecuperation\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"ordonnanceId\": \"\", \t\t\t\"pharmacieId\": \"\", \t\t\t\"adresseId\": \"\", \t\t\t\"assuranceId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/commande/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"commande",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "commande.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"prixTotal\": \"\", \t\t\t\"modeRecuperation\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"ordonnanceId\": \"\", \t\t\t\"pharmacieId\": \"\", \t\t\t\"adresseId\": \"\", \t\t\t\"assuranceId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/commande/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "commande",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "commande.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/commande/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "commande",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "commande.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"prixTotal\": \"\", \t\t\"modeRecuperation\": \"\", \t\t\"userId\": \"\", \t\t\"ordonnanceId\": \"\", \t\t\"pharmacieId\": \"\", \t\t\"adresseId\": \"\", \t\t\"assuranceId\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/commande/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "commande",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "medicament",
+			"item": [
+                {
+					"name": "medicament.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"libelle\": \"\", \t\t\t\"dosage\": \"\", \t\t\t\"formePharmaceutique\": \"\", \t\t\t\"plafondPrix\": \"\", \t\t\t\"principeActif\": \"\", \t\t\t\"laboratoire\": \"\", \t\t\t\"description\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/medicament/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"medicament",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "medicament.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"libelle\": \"\", \t\t\t\"dosage\": \"\", \t\t\t\"formePharmaceutique\": \"\", \t\t\t\"plafondPrix\": \"\", \t\t\t\"principeActif\": \"\", \t\t\t\"laboratoire\": \"\", \t\t\t\"description\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/medicament/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "medicament",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "medicament.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/medicament/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "medicament",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "medicament.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"libelle\": \"\", \t\t\"dosage\": \"\", \t\t\"formePharmaceutique\": \"\", \t\t\"plafondPrix\": \"\", \t\t\"principeActif\": \"\", \t\t\"laboratoire\": \"\", \t\t\"description\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/medicament/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "medicament",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "ordonnance",
+			"item": [
+                {
+					"name": "ordonnance.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"dateEmission\": \"\", \t\t\t\"imageUrl\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/ordonnance/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"ordonnance",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "ordonnance.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"dateEmission\": \"\", \t\t\t\"imageUrl\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/ordonnance/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "ordonnance",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "ordonnance.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/ordonnance/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "ordonnance",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "ordonnance.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"dateEmission\": \"\", \t\t\"imageUrl\": \"\", \t\t\"userId\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/ordonnance/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "ordonnance",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "ordonnanceMedicament",
+			"item": [
+                {
+					"name": "ordonnanceMedicament.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"ordonnanceId\": \"\", \t\t\t\"medicamentId\": \"\", \t\t\t\"quantite\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/ordonnanceMedicament/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"ordonnanceMedicament",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "ordonnanceMedicament.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"ordonnanceId\": \"\", \t\t\t\"medicamentId\": \"\", \t\t\t\"quantite\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/ordonnanceMedicament/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "ordonnanceMedicament",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "ordonnanceMedicament.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/ordonnanceMedicament/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "ordonnanceMedicament",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "ordonnanceMedicament.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"ordonnanceId\": \"\", \t\t\"medicamentId\": \"\", \t\t\"quantite\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/ordonnanceMedicament/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "ordonnanceMedicament",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "otp",
+			"item": [
+                {
+					"name": "otp.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"codeOtp\": \"\", \t\t\t\"identifier\": \"\", \t\t\t\"origineElementId\": \"\", \t\t\t\"isExpired\": \"\", \t\t\t\"expireOn\": \"\", \t\t\t\"token\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"commentaire\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/otp/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"otp",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "otp.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"codeOtp\": \"\", \t\t\t\"identifier\": \"\", \t\t\t\"origineElementId\": \"\", \t\t\t\"isExpired\": \"\", \t\t\t\"expireOn\": \"\", \t\t\t\"token\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"commentaire\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/otp/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "otp",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "otp.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/otp/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "otp",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "otp.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"codeOtp\": \"\", \t\t\"identifier\": \"\", \t\t\"origineElementId\": \"\", \t\t\"isExpired\": \"\", \t\t\"expireOn\": \"\", \t\t\"token\": \"\", \t\t\"updatedAt\": \"\", \t\t\"deletedAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"updatedBy\": \"\", \t\t\"isDeleted\": \"\", \t\t\"commentaire\": \"\", \t\t\"statusId\": \"\", \t\t\"createdAt\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/otp/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "otp",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "pharmacie",
+			"item": [
+                {
+					"name": "pharmacie.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"nom\": \"\", \t\t\t\"adresse\": \"\", \t\t\t\"latitude\": \"\", \t\t\t\"longitude\": \"\", \t\t\t\"telephone\": \"\", \t\t\t\"email\": \"\", \t\t\t\"horairesOuverture\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/pharmacie/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"pharmacie",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "pharmacie.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"nom\": \"\", \t\t\t\"adresse\": \"\", \t\t\t\"latitude\": \"\", \t\t\t\"longitude\": \"\", \t\t\t\"telephone\": \"\", \t\t\t\"email\": \"\", \t\t\t\"horairesOuverture\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/pharmacie/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "pharmacie",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "pharmacie.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/pharmacie/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "pharmacie",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "pharmacie.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"nom\": \"\", \t\t\"adresse\": \"\", \t\t\"latitude\": \"\", \t\t\"longitude\": \"\", \t\t\"telephone\": \"\", \t\t\"email\": \"\", \t\t\"horairesOuverture\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/pharmacie/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "pharmacie",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "prixMedicament",
+			"item": [
+                {
+					"name": "prixMedicament.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"medicamentId\": \"\", \t\t\t\"pharmacieId\": \"\", \t\t\t\"prixUnitaire\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/prixMedicament/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"prixMedicament",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "prixMedicament.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"medicamentId\": \"\", \t\t\t\"pharmacieId\": \"\", \t\t\t\"prixUnitaire\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/prixMedicament/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "prixMedicament",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "prixMedicament.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/prixMedicament/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "prixMedicament",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "prixMedicament.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"medicamentId\": \"\", \t\t\"pharmacieId\": \"\", \t\t\"prixUnitaire\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/prixMedicament/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "prixMedicament",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "roles",
+			"item": [
+                {
+					"name": "roles.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"libelle\": \"\", \t\t\t\"commentaire\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/roles/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"roles",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "roles.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"libelle\": \"\", \t\t\t\"commentaire\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/roles/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "roles",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "roles.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/roles/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "roles",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "roles.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"libelle\": \"\", \t\t\"commentaire\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/roles/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "roles",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "setting",
+			"item": [
+                {
+					"name": "setting.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"code\": \"\", \t\t\t\"valeur\": \"\", \t\t\t\"statusId\": \"\", \t\t\t\"deletedAt\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/setting/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"setting",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "setting.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"code\": \"\", \t\t\t\"valeur\": \"\", \t\t\t\"statusId\": \"\", \t\t\t\"deletedAt\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/setting/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "setting",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "setting.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/setting/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "setting",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "setting.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"code\": \"\", \t\t\"valeur\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedBy\": \"\", \t\t\"isDeleted\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"updatedAt\": \"\", \t\t\"createdAt\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/setting/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "setting",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "userActivity",
+			"item": [
+                {
+					"name": "userActivity.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"activityType\": \"\", \t\t\t\"remoteIp\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/userActivity/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"userActivity",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "userActivity.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"activityType\": \"\", \t\t\t\"remoteIp\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/userActivity/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "userActivity",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "userActivity.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/userActivity/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "userActivity",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "userActivity.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"activityType\": \"\", \t\t\"remoteIp\": \"\", \t\t\"userId\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/userActivity/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "userActivity",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "userPreferences",
+			"item": [
+                {
+					"name": "userPreferences.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"preferenceKey\": \"\", \t\t\t\"preferenceValue\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/userPreferences/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"userPreferences",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "userPreferences.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"preferenceKey\": \"\", \t\t\t\"preferenceValue\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/userPreferences/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "userPreferences",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "userPreferences.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/userPreferences/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "userPreferences",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "userPreferences.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"preferenceKey\": \"\", \t\t\"preferenceValue\": \"\", \t\t\"userId\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/userPreferences/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "userPreferences",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "userProfile",
+			"item": [
+                {
+					"name": "userProfile.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"firstname\": \"\", \t\t\t\"lastname\": \"\", \t\t\t\"profilePicture\": \"\", \t\t\t\"contact\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/userProfile/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"userProfile",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "userProfile.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"firstname\": \"\", \t\t\t\"lastname\": \"\", \t\t\t\"profilePicture\": \"\", \t\t\t\"contact\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/userProfile/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "userProfile",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "userProfile.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/userProfile/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "userProfile",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "userProfile.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"firstname\": \"\", \t\t\"lastname\": \"\", \t\t\"profilePicture\": \"\", \t\t\"contact\": \"\", \t\t\"userId\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/userProfile/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "userProfile",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "userRoles",
+			"item": [
+                {
+					"name": "userRoles.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"userId\": \"\", \t\t\t\"roleId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/userRoles/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"userRoles",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "userRoles.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"userId\": \"\", \t\t\t\"roleId\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/userRoles/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "userRoles",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "userRoles.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/userRoles/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "userRoles",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "userRoles.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"userId\": \"\", \t\t\"roleId\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/userRoles/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "userRoles",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+                {
+					"name": "users.create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"username\": \"\", \t\t\t\"password\": \"\", \t\t\t\"email\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+						},
+						"url": {
+							"raw": "{{appUrl}}/users/create",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+                    "name": "users.update",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\", \t\t\t\"username\": \"\", \t\t\t\"password\": \"\", \t\t\t\"email\": \"\", \t\t\t\"deletedAt\": \"\", \t\t\t\"statusId\": \"\" \t\t}  \t]   }"
+                        },
+                        "url": {
+                            "raw": "{{appUrl}}/users/update",
+                            "host": [
+                                "{{appUrl}}"
+                            ],
+                            "path": [
+                                "users",
+                                "update"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                     "name": "users.delete",
+                     "request": {
+                         "method": "POST",
+                         "header": [
+                             {
+                                 "key": "Content-Type",
+                                 "value": "application/json"
+                             }
+                         ],
+                         "body": {
+                             "mode": "raw",
+                            "raw": "{ \t\"user\":\"1\", \t\"datas\":[ \t\t{   \t\t\t\"id\": \"\" \t\t}  \t]   }"
+                         },
+                         "url": {
+                             "raw": "{{appUrl}}/users/delete",
+                             "host": [
+                                 "{{appUrl}}"
+                             ],
+                             "path": [
+                                 "users",
+                                 "delete"
+                             ]
+                         }
+                     },
+                     "response": []
+                 },
+                 {
+                   "name": "users.getByCriteria",
+                   "request": {
+                       "method": "POST",
+                       "header": [
+                           {
+                               "key": "Content-Type",
+                               "value": "application/json"
+                           }
+                       ],
+                       "body": {
+                           "mode": "raw",
+			            "raw": "{ \t\"user\":\"1\", \t\"isSimpleLoading\":false, \t\"data\":{   \t\t\"id\": \"\", \t\t\"username\": \"\", \t\t\"password\": \"\", \t\t\"email\": \"\", \t\t\"createdAt\": \"\", \t\t\"createdBy\": \"\", \t\t\"deletedAt\": \"\", \t\t\"isDeleted\": \"\", \t\t\"statusId\": \"\", \t\t\"updatedAt\": \"\", \t\t\"updatedBy\": \"\" \t}   }"
+},
+                       "url": {
+                           "raw": "{{appUrl}}/users/getByCriteria",
+                           "host": [
+                               "{{appUrl}}"
+                           ],
+                           "path": [
+                               "users",
+                               "getByCriteria"
+                           ]
+                       }
+                   },
+                   "response": []
+               }
+			]
+		}
+    ]
+}

@@ -1,0 +1,150 @@
+{
+	"user": 1,
+	"datas": [
+		{
+			"code": "ROLES",
+			"name": "ROLES"
+		},
+		{
+			"code": "VIEW_ROLES",
+			"parentCode": "ROLES",
+			"name": "VIEW ROLES"
+		},
+		{
+			"code": "CREATE_ROLES",
+			"parentCode": "ROLES",
+			"name": "CREATE ROLES"
+		},
+		{
+			"code": "UPDATE_ROLES",
+			"parentCode": "ROLES",
+			"name": "UPDATE ROLES"
+		},
+		{
+			"code": "DELETE_ROLES",
+			"parentCode": "ROLES",
+			"name": "DELETE ROLES"
+		},
+		{
+			"code": "USER_ACTIVITY",
+			"name": "USER_ACTIVITY"
+		},
+		{
+			"code": "VIEW_USER_ACTIVITY",
+			"parentCode": "USER_ACTIVITY",
+			"name": "VIEW USER_ACTIVITY"
+		},
+		{
+			"code": "CREATE_USER_ACTIVITY",
+			"parentCode": "USER_ACTIVITY",
+			"name": "CREATE USER_ACTIVITY"
+		},
+		{
+			"code": "UPDATE_USER_ACTIVITY",
+			"parentCode": "USER_ACTIVITY",
+			"name": "UPDATE USER_ACTIVITY"
+		},
+		{
+			"code": "DELETE_USER_ACTIVITY",
+			"parentCode": "USER_ACTIVITY",
+			"name": "DELETE USER_ACTIVITY"
+		},
+		{
+			"code": "USER_PREFERENCES",
+			"name": "USER_PREFERENCES"
+		},
+		{
+			"code": "VIEW_USER_PREFERENCES",
+			"parentCode": "USER_PREFERENCES",
+			"name": "VIEW USER_PREFERENCES"
+		},
+		{
+			"code": "CREATE_USER_PREFERENCES",
+			"parentCode": "USER_PREFERENCES",
+			"name": "CREATE USER_PREFERENCES"
+		},
+		{
+			"code": "UPDATE_USER_PREFERENCES",
+			"parentCode": "USER_PREFERENCES",
+			"name": "UPDATE USER_PREFERENCES"
+		},
+		{
+			"code": "DELETE_USER_PREFERENCES",
+			"parentCode": "USER_PREFERENCES",
+			"name": "DELETE USER_PREFERENCES"
+		},
+		{
+			"code": "USER_PROFILE",
+			"name": "USER_PROFILE"
+		},
+		{
+			"code": "VIEW_USER_PROFILE",
+			"parentCode": "USER_PROFILE",
+			"name": "VIEW USER_PROFILE"
+		},
+		{
+			"code": "CREATE_USER_PROFILE",
+			"parentCode": "USER_PROFILE",
+			"name": "CREATE USER_PROFILE"
+		},
+		{
+			"code": "UPDATE_USER_PROFILE",
+			"parentCode": "USER_PROFILE",
+			"name": "UPDATE USER_PROFILE"
+		},
+		{
+			"code": "DELETE_USER_PROFILE",
+			"parentCode": "USER_PROFILE",
+			"name": "DELETE USER_PROFILE"
+		},
+		{
+			"code": "USER_ROLES",
+			"name": "USER_ROLES"
+		},
+		{
+			"code": "VIEW_USER_ROLES",
+			"parentCode": "USER_ROLES",
+			"name": "VIEW USER_ROLES"
+		},
+		{
+			"code": "CREATE_USER_ROLES",
+			"parentCode": "USER_ROLES",
+			"name": "CREATE USER_ROLES"
+		},
+		{
+			"code": "UPDATE_USER_ROLES",
+			"parentCode": "USER_ROLES",
+			"name": "UPDATE USER_ROLES"
+		},
+		{
+			"code": "DELETE_USER_ROLES",
+			"parentCode": "USER_ROLES",
+			"name": "DELETE USER_ROLES"
+		},
+		{
+			"code": "USERS",
+			"name": "USERS"
+		},
+		{
+			"code": "VIEW_USERS",
+			"parentCode": "USERS",
+			"name": "VIEW USERS"
+		},
+		{
+			"code": "CREATE_USERS",
+			"parentCode": "USERS",
+			"name": "CREATE USERS"
+		},
+		{
+			"code": "UPDATE_USERS",
+			"parentCode": "USERS",
+			"name": "UPDATE USERS"
+		},
+		{
+			"code": "DELETE_USERS",
+			"parentCode": "USERS",
+			"name": "DELETE USERS"
+		}
+
+	]
+}
