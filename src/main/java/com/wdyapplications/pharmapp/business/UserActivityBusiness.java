@@ -80,7 +80,7 @@ public class UserActivityBusiness implements IBasicBusiness<Request<UserActivity
 		for (UserActivityDto dto : request.getDatas()) {
 			// Definir les parametres obligatoires
 			Map<String, Object> fieldsToVerify = new HashMap<String, Object>();
-			fieldsToVerify.put("activityType", dto.getActivityType());
+			fieldsToVerify.put("serviceLibelle", dto.getServiceLibelle());
 			fieldsToVerify.put("userId", dto.getUserId());
 			if (!Validate.RequiredValue(fieldsToVerify).isGood()) {
 				response.setStatus(functionalError.FIELD_EMPTY(Validate.getValidate().getField(), locale));
@@ -194,8 +194,8 @@ public class UserActivityBusiness implements IBasicBusiness<Request<UserActivity
 				}
 				entityToSave.setUsers(existingUsers);
 			}
-			if (Utilities.notBlank(dto.getActivityType())) {
-				entityToSave.setActivityType(dto.getActivityType());
+			if (Utilities.notBlank(dto.getServiceLibelle())) {
+				entityToSave.setServiceLibelle(dto.getServiceLibelle());
 			}
 			if (dto.getCreatedBy() != null && dto.getCreatedBy() > 0) {
 				entityToSave.setCreatedBy(dto.getCreatedBy());

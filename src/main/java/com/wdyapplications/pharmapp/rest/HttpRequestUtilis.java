@@ -35,13 +35,8 @@ import java.util.*;
 
 @Component
 public class HttpRequestUtilis {
-
-    @Autowired
-    private static UserActivityBusiness userActivityBusiness;
-
     @Autowired
     private HighClientFactory highClientFactory;
-
     @Autowired
     private SettingRepository settingRepository;
 
@@ -49,10 +44,11 @@ public class HttpRequestUtilis {
 
 //
     public static void calledEncryptRequestManagement(FilterChain chain, HttpServletRequest httpServletRequest,
-                                                      HttpServletResponse httpServletResponse, String uri, String requestValue, FunctionalError functionalError, SettingRepository settingRepository) throws IOException, ServletException {
+                                                      HttpServletResponse httpServletResponse, String uri, String requestValue, FunctionalError functionalError, SettingRepository settingRepository,UserActivityBusiness userActivityBusiness) throws IOException, ServletException {
 
         String serviceLibelle   = "";
         String requestValueLog  = "";
+        String decriptRequest = "";
         int actualVersionNumber   = 0;
         String responseValueLog = "";
         int versionNumber   = 0;
@@ -67,7 +63,7 @@ public class HttpRequestUtilis {
             // get request value
             String encryptRequest = requestValue;
             // decrypt request
-            String decriptRequest = SecurityUtils.ExtractDataFromAesMobile(ExtractData(encryptRequest));
+            decriptRequest = SecurityUtils.ExtractDataFromAesMobile(ExtractData(encryptRequest));
             // build request to send
             String responseToPublish = "";
             reqToJson = Utilities.notBlank(decriptRequest) ? new JSONObject(decriptRequest) : new JSONObject();
@@ -78,7 +74,6 @@ public class HttpRequestUtilis {
                 publishResponse(requestValueLog, httpServletResponse);
             }
             user.setId(Integer.parseInt(reqToJson.get("user").toString()));
-
             if (Utilities.blank(decriptRequest) || Utilities.isFalse(reqToJson.has("serviceLibelle"))) {
                 System.out.println("--- Forbidden serviceLibelle is not valid ----");
                 responseToPublish = ReturnAccesDenied(httpServletRequest, httpServletResponse,
@@ -87,19 +82,21 @@ public class HttpRequestUtilis {
             } else {
                 decriptRequest  = reqToJson.toString();
                 serviceLibelle  = reqToJson.get("serviceLibelle").toString();
-
-
+                if (!reqToJson.has("versionNumber")) {
+                    String respo = "Vous n'êtes pas autorisé a utiliser l'application";
+                    String encrypReponse = SecurityUtils.EncryptResponseMobile(respo);
+                    publishResponse(encrypReponse, httpServletResponse);
+                }
                 // recupération de la version du code de l'application mobile
                  versionNumber = Integer.parseInt(reqToJson.get("versionNumber").toString());
                 // recupération de l'id de l'appareil
                 deviceId = reqToJson.get("deviceId").toString();
-                if (versionNumber < actualVersionNumber) {
+                if (versionNumber <= actualVersionNumber) {
                     String respo = returnOldVersionSet(httpServletRequest, httpServletResponse,
                             " Version :: " + actualVersionNumber, functionalError);
                     String encrypReponse = SecurityUtils.EncryptResponseMobile(respo);
                     publishResponse(encrypReponse, httpServletResponse);
                 }
-
                 HttpServletRequestWritableWrapper requestWrapper = new HttpServletRequestWritableWrapper(
                         httpServletRequest, decriptRequest.getBytes());
                 HttpServletResponseReadableWrapper responseWrapper = new HttpServletResponseReadableWrapper(
@@ -114,7 +111,7 @@ public class HttpRequestUtilis {
         } catch (Exception e) {
             responseValueLog = e.getMessage();
         } finally {
-            logRequest(uri, user.getId(), serviceLibelle, ipAddress, responseValueLog, requestValueLog, null, versionNumber, deviceId);
+            logRequest(uri, user.getId(), serviceLibelle, ipAddress, responseValueLog, decriptRequest, versionNumber, deviceId, userActivityBusiness);
         }
     }
 
@@ -171,7 +168,7 @@ public class HttpRequestUtilis {
     }
 
 
-    public static void noEncryptRequestThenChainDoFilter(ServletResponse response, FilterChain chain, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,  String requestValue)
+    public static void noEncryptRequestThenChainDoFilter(ServletResponse response, FilterChain chain, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,  String requestValue, UserActivityBusiness userActivityBusiness)
             throws IOException, ServletException {
         JSONObject reqToJson;
         reqToJson = new JSONObject(requestValue);
@@ -212,78 +209,92 @@ public class HttpRequestUtilis {
 
     public static void logRequest(
             String uri, int userId, String serviceLibelle, String ipAddress, String responseValueLog, String requestValueLog,
-            HighClientFactory highClientFactory, Integer versionNumber,String deviceId) {
+             Integer versionNumber,String deviceId, UserActivityBusiness userActivityBusiness) {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run()
             {
 
                 // Mes declarations
-                Map<String, String> req          = null;
+                UserActivityDto             dto      = new UserActivityDto();
                 JSONObject          res          = new JSONObject(responseValueLog);
                 Map<String, String> resp         = null;
                 Map<String, String> requestLog   = new HashMap<>();
                 ObjectMapper        objectMapper = null;
                 try
                 {
+                    dto.setServiceLibelle(serviceLibelle);
+                    dto.setRemoteIp(ipAddress);
+                    dto.setUserId(userId);
+                    dto.setRequest(requestValueLog);
+                    dto.setResponse(responseValueLog);
+                    dto.setHasError(res.has("hasError") ? String.valueOf(res.getBoolean("hasError")) : "false");
+                    dto.setDeviceId(deviceId);
+                    dto.setUri(uri);
+                    dto.setVersionNumber(versionNumber.toString());
+                    dto.setCreatedAt(Utilities.getCurrentLongDate("yyyy-MM-dd HH:mm:ss"));
+                    Request<UserActivityDto> request = new Request<>();
+                    request.setDatas(Arrays.asList(dto));
+                    request.setUser(userId);
+                    Response<UserActivityDto> response = userActivityBusiness.create(request, Locale.FRENCH);
 
-                    requestLog.put("remoteAddr", ipAddress);
-
-                    if (Utilities.isNotBlank(serviceLibelle))
-                    {
-
-                        requestLog.put("serviceLibelle", serviceLibelle);
-                    }
-
-                    if (versionNumber != 0)
-                    {
-                        requestLog.put("versionNumber", versionNumber.toString());
-                    }
-
-                    requestLog.put("request", requestValueLog);
-
-                    requestLog.put("response", responseValueLog);
-
-                    requestLog.put("hasError", res.has("hasError") ? String.valueOf(res.getBoolean("hasError")) : "false");
-
-                    requestLog.put("userId", String.valueOf(userId));
-                    requestLog.put("deviceId", deviceId);
-
-                    requestLog.put("uri", uri != null ? uri : "N/A");
-
-                    requestLog.put("createdAt", Utilities.getCurrentLongDate("yyyy-MM-dd HH:mm:ss"));
-
-
-                    // je cré instance de l'ObjectMapper
-                    objectMapper = new ObjectMapper();
-
-                    // permet de convertir
-                    objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-                    // je convertis la valeur de la requête en Request
-                    if (responseValueLog.length() == 0 || responseValueLog == "")
-                    {
-                        resp = objectMapper.readValue("{\"null\":\"null \"}", Map.class);
-                    } else
-                    {
-                        resp = objectMapper.readValue(responseValueLog, Map.class);
-                    }
-
-                    // je set la valeur du hasError
-
-                    // je set le jour
-                    requestLog.put("day", Utilities.getCurrentLongDate("yyyy-MM-dd"));
-                    requestLog.put("month", Utilities.getCurrentLongDate("yyyy-MM"));
-                    requestLog.put("year", Utilities.getCurrentLongDate("yyyy"));
-                    requestLog.put("week", String.valueOf(substitutDateByPeriode(requestLog.get("day"), "week")));
-
-
-                    // loginfoBusiness.create(requestLog, new Locale("fr"));
-                    final String forIndex = Utilities.getCurrentLongDate("yyyyMMdd");
-
-                    EsUtils.insert(JOB_TYPE + forIndex, "_doc",
-                            Utilities.getEsTemplateByJobType(JOB_TYPE), highClientFactory, requestLog
-                    );
+//                    requestLog.put("remoteAddr", ipAddress);
+//
+//                    if (Utilities.isNotBlank(serviceLibelle))
+//                    {
+//
+//                        requestLog.put("serviceLibelle", serviceLibelle);
+//                    }
+//
+//                    if (versionNumber != 0)
+//                    {
+//                        requestLog.put("versionNumber", versionNumber.toString());
+//                    }
+//
+//                    requestLog.put("request", requestValueLog);
+//
+//                    requestLog.put("response", responseValueLog);
+//
+//                    requestLog.put("hasError", res.has("hasError") ? String.valueOf(res.getBoolean("hasError")) : "false");
+//
+//                    requestLog.put("userId", String.valueOf(userId));
+//                    requestLog.put("deviceId", deviceId);
+//
+//                    requestLog.put("uri", uri != null ? uri : "N/A");
+//
+//                    requestLog.put("createdAt", Utilities.getCurrentLongDate("yyyy-MM-dd HH:mm:ss"));
+//
+//
+//                    // je cré instance de l'ObjectMapper
+//                    objectMapper = new ObjectMapper();
+//
+//                    // permet de convertir
+//                    objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//
+//                    // je convertis la valeur de la requête en Request
+//                    if (responseValueLog.length() == 0 || responseValueLog == "")
+//                    {
+//                        resp = objectMapper.readValue("{\"null\":\"null \"}", Map.class);
+//                    } else
+//                    {
+//                        resp = objectMapper.readValue(responseValueLog, Map.class);
+//                    }
+//
+//                    // je set la valeur du hasError
+//
+//                    // je set le jour
+//                    requestLog.put("day", Utilities.getCurrentLongDate("yyyy-MM-dd"));
+//                    requestLog.put("month", Utilities.getCurrentLongDate("yyyy-MM"));
+//                    requestLog.put("year", Utilities.getCurrentLongDate("yyyy"));
+//                    requestLog.put("week", String.valueOf(substitutDateByPeriode(requestLog.get("day"), "week")));
+//
+//
+//                    // loginfoBusiness.create(requestLog, new Locale("fr"));
+//                    final String forIndex = Utilities.getCurrentLongDate("yyyyMMdd");
+//
+//                    EsUtils.insert(JOB_TYPE + forIndex, "_doc",
+//                            Utilities.getEsTemplateByJobType(JOB_TYPE), highClientFactory, requestLog
+//                    );
                 } catch (Exception e)
                 {
 

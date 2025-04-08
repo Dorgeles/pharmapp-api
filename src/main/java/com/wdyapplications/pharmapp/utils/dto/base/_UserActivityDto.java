@@ -26,13 +26,76 @@ public class _UserActivityDto implements Cloneable {
 
     protected Integer    id                   ; // Primary Key
 
-    protected String     activityType         ;
+	protected String     serviceLibelle         ;
+	protected String     versionNumber         ;
+	protected String     request         ;
+	protected String     response         ;
+	protected String     hasError         ;
+	protected String     uri         ;
+	protected String     deviceId         ;
     protected String     remoteIp             ;
     protected Integer    userId               ;
 	protected String     createdAt            ;
     protected Integer    createdBy            ;
 	protected String     deletedAt            ;
     protected Boolean    isDeleted            ;
+
+	public String getServiceLibelle() {
+		return serviceLibelle;
+	}
+
+	public void setServiceLibelle(String serviceLibelle) {
+		this.serviceLibelle = serviceLibelle;
+	}
+
+	public String getVersionNumber() {
+		return versionNumber;
+	}
+
+	public void setVersionNumber(String versionNumber) {
+		this.versionNumber = versionNumber;
+	}
+
+	public String getRequest() {
+		return request;
+	}
+
+	public void setRequest(String request) {
+		this.request = request;
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
+	public String getHasError() {
+		return hasError;
+	}
+
+	public void setHasError(String hasError) {
+		this.hasError = hasError;
+	}
+
+	public String getUri() {
+		return uri;
+	}
+
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
+
+	public String getDeviceId() {
+		return deviceId;
+	}
+
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
+	}
+
 	public Boolean getIsDeleted() {
 		return isDeleted;
 	}
@@ -48,14 +111,6 @@ public class _UserActivityDto implements Cloneable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getActivityType() {
-		return activityType;
-	}
-
-	public void setActivityType(String activityType) {
-		this.activityType = activityType;
 	}
 
 	public String getRemoteIp() {
@@ -146,12 +201,12 @@ public class _UserActivityDto implements Cloneable {
 		this.idParam = idParam;
 	}
 
-	public SearchParam<String> getActivityTypeParam() {
-		return activityTypeParam;
+	public SearchParam<String> getServiceLibelleParam() {
+		return serviceLibelleParam;
 	}
 
-	public void setActivityTypeParam(SearchParam<String> activityTypeParam) {
-		this.activityTypeParam = activityTypeParam;
+	public void setServiceLibelleParam(SearchParam<String> activityTypeParam) {
+		this.serviceLibelleParam = serviceLibelleParam;
 	}
 
 	public SearchParam<String> getRemoteIpParam() {
@@ -269,7 +324,7 @@ public class _UserActivityDto implements Cloneable {
 
 	// Search param
 	protected SearchParam<Integer>  idParam               ;                     
-	protected SearchParam<String>   activityTypeParam     ;                     
+	protected SearchParam<String>   serviceLibelleParam     ;
 	protected SearchParam<String>   remoteIpParam         ;                     
 	protected SearchParam<Integer>  userIdParam           ;                     
 	protected SearchParam<String>   createdAtParam        ;                     

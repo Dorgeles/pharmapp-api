@@ -38,12 +38,12 @@ public interface _UserActivityRepository {
     /**
      * Finds UserActivity by using activityType as a search criteria.
      *
-     * @param activityType
+     * @param serviceLibelle
      * @return An Object UserActivity whose activityType is equals to the given activityType. If
      *         no UserActivity is found, this method returns null.
      */
-    @Query("select e from UserActivity e where e.activityType = :activityType and e.isDeleted = :isDeleted")
-    List<UserActivity> findByActivityType(@Param("activityType")String activityType, @Param("isDeleted")Boolean isDeleted);
+    @Query("select e from UserActivity e where e.serviceLibelle = :serviceLibelle and e.isDeleted = :isDeleted")
+    List<UserActivity> findByServiceLibelle(@Param("serviceLibelle")String serviceLibelle, @Param("isDeleted")Boolean isDeleted);
     /**
      * Finds UserActivity by using remoteIp as a search criteria.
      *
@@ -53,6 +53,60 @@ public interface _UserActivityRepository {
      */
     @Query("select e from UserActivity e where e.remoteIp = :remoteIp and e.isDeleted = :isDeleted")
     List<UserActivity> findByRemoteIp(@Param("remoteIp")String remoteIp, @Param("isDeleted")Boolean isDeleted);
+    /**
+     * Finds UserActivity by using hasError as a search criteria.
+     *
+     * @param hasError
+     * @return An Object UserActivity whose remoteIp is equals to the given remoteIp. If
+     *         no UserActivity is found, this method returns null.
+     */
+    @Query("select e from UserActivity e where e.hasError = :hasError and e.isDeleted = :isDeleted")
+    List<UserActivity> findByHasError(@Param("hasError")String hasError, @Param("isDeleted")Boolean isDeleted);
+    /**
+     * Finds UserActivity by using device_id as a search criteria.
+     *
+     * @param deviceId
+     * @return An Object UserActivity whose remoteIp is equals to the given remoteIp. If
+     *         no UserActivity is found, this method returns null.
+     */
+    @Query("select e from UserActivity e where e.deviceId = :deviceId and e.isDeleted = :isDeleted")
+    List<UserActivity> findByDeviceId(@Param("deviceId")String deviceId, @Param("isDeleted")Boolean isDeleted);
+    /**
+     * Finds UserActivity by using remoteIp as a search criteria.
+     *
+     * @param versionNumber
+     * @return An Object UserActivity whose remoteIp is equals to the given remoteIp. If
+     *         no UserActivity is found, this method returns null.
+     */
+    @Query("select e from UserActivity e where e.versionNumber = :versionNumber and e.isDeleted = :isDeleted")
+    List<UserActivity> findByVersionNumber(@Param("versionNumber")String versionNumber, @Param("isDeleted")Boolean isDeleted);
+    /**
+     * Finds UserActivity by using remoteIp as a search criteria.
+     *
+     * @param uri
+     * @return An Object UserActivity whose remoteIp is equals to the given remoteIp. If
+     *         no UserActivity is found, this method returns null.
+     */
+    @Query("select e from UserActivity e where e.uri = :uri and e.isDeleted = :isDeleted")
+    List<UserActivity> findByUri(@Param("uri")String uri, @Param("isDeleted")Boolean isDeleted);
+    /**
+     * Finds UserActivity by using request as a search criteria.
+     *
+     * @param request
+     * @return An Object UserActivity whose remoteIp is equals to the given remoteIp. If
+     *         no UserActivity is found, this method returns null.
+     */
+    @Query("select e from UserActivity e where e.request = :request and e.isDeleted = :isDeleted")
+    List<UserActivity> findByRequest(@Param("request")String request, @Param("isDeleted")Boolean isDeleted);
+    /**
+     * Finds UserActivity by using response as a search criteria.
+     *
+     * @param response
+     * @return An Object UserActivity whose remoteIp is equals to the given remoteIp. If
+     *         no UserActivity is found, this method returns null.
+     */
+    @Query("select e from UserActivity e where e.response = :response and e.isDeleted = :isDeleted")
+    List<UserActivity> findByResponse(@Param("response")String response, @Param("isDeleted")Boolean isDeleted);
     /**
      * Finds UserActivity by using createdAt as a search criteria.
      *
@@ -241,8 +295,8 @@ public interface _UserActivityRepository {
             if (dto.getId() != null || Utilities.searchParamIsNotEmpty(dto.getIdParam())) {
                 listOfQuery.add(CriteriaUtils.generateCriteria("id", dto.getId(), "e.id", "Integer", dto.getIdParam(), param, index, locale));
             }
-            if (Utilities.isNotBlank(dto.getActivityType()) || Utilities.searchParamIsNotEmpty(dto.getActivityTypeParam())) {
-                listOfQuery.add(CriteriaUtils.generateCriteria("activityType", dto.getActivityType(), "e.activityType", "String", dto.getActivityTypeParam(), param, index, locale));
+            if (Utilities.isNotBlank(dto.getServiceLibelle()) || Utilities.searchParamIsNotEmpty(dto.getServiceLibelleParam())) {
+                listOfQuery.add(CriteriaUtils.generateCriteria("activityType", dto.getStatusLibelle(), "e.activityType", "String", dto.getServiceLibelleParam(), param, index, locale));
             }
             if (Utilities.isNotBlank(dto.getRemoteIp()) || Utilities.searchParamIsNotEmpty(dto.getRemoteIpParam())) {
                 listOfQuery.add(CriteriaUtils.generateCriteria("remoteIp", dto.getRemoteIp(), "e.remoteIp", "String", dto.getRemoteIpParam(), param, index, locale));

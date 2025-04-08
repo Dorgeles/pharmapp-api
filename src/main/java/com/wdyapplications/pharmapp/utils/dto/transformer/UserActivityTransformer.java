@@ -19,6 +19,7 @@ import java.util.List;
 
 public class UserActivityTransformer {
 	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	private static final SimpleDateFormat DATE_FORMATT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public static UserActivityDto toDto(UserActivity entity) throws ParseException {
 		if (entity == null) {
@@ -26,8 +27,14 @@ public class UserActivityTransformer {
 		}
 		UserActivityDto dto = new UserActivityDto();
 		dto.setId(entity.getId());
-		dto.setActivityType(entity.getActivityType());
+		dto.setServiceLibelle(entity.getServiceLibelle());
 		dto.setRemoteIp(entity.getRemoteIp());
+		dto.setVersionNumber(entity.getVersionNumber());
+		dto.setUri(entity.getUri());
+		dto.setRequest(entity.getRequest());
+		dto.setDeviceId(entity.getDeviceId());
+		dto.setResponse(entity.getResponse());
+		dto.setHasError(entity.getHasError());
 		dto.setCreatedAt(formatDate(entity.getCreatedAt()));
 		dto.setCreatedBy(entity.getCreatedBy());
 		dto.setDeletedAt(formatDate(entity.getDeletedAt()));
@@ -56,7 +63,7 @@ public class UserActivityTransformer {
 		}
 		UserActivityDto dto = new UserActivityDto();
 		dto.setId(entity.getId());
-		dto.setActivityType(entity.getActivityType());
+		dto.setServiceLibelle(entity.getServiceLibelle());
 		dto.setRemoteIp(entity.getRemoteIp());
 		return dto;
 	}
@@ -79,9 +86,15 @@ public class UserActivityTransformer {
 		UserActivity entity = new UserActivity();
 		entity.setId(dto.getId());
 		entity.setUsers(users);
-		entity.setActivityType(dto.getActivityType());
+		entity.setServiceLibelle(dto.getServiceLibelle());
 		entity.setRemoteIp(dto.getRemoteIp());
-		entity.setCreatedAt(parseDate(dto.getCreatedAt()));
+		entity.setUri(dto.getUri());
+		entity.setVersionNumber(dto.getVersionNumber());
+		entity.setResponse(dto.getResponse());
+		entity.setRequest(dto.getRequest());
+		entity.setHasError(dto.getHasError());
+		entity.setDeviceId(dto.getDeviceId());
+		entity.setCreatedAt(parseDateT(dto.getCreatedAt()));
 		entity.setCreatedBy(dto.getCreatedBy());
 		entity.setDeletedAt(parseDate(dto.getDeletedAt()));
 		entity.setIsDeleted(dto.getIsDeleted());
@@ -91,11 +104,17 @@ public class UserActivityTransformer {
 		return entity;
 	}
 
+
+
 	private static String formatDate(Date date) {
 		return (date != null) ? DATE_FORMAT.format(date) : null;
 	}
 
 	private static Date parseDate(String dateStr) throws ParseException {
 		return (dateStr != null && !dateStr.isEmpty()) ? DATE_FORMAT.parse(dateStr) : null;
+	}
+
+	private static Date parseDateT(String dateStr) throws ParseException {
+		return (dateStr != null && !dateStr.isEmpty()) ? DATE_FORMATT.parse(dateStr) : null;
 	}
 }

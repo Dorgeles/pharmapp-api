@@ -5,9 +5,11 @@
  */
 package com.wdyapplications.pharmapp.rest;
 
+import com.wdyapplications.pharmapp.business.UserActivityBusiness;
 import com.wdyapplications.pharmapp.dao.repository.SettingRepository;
 import com.wdyapplications.pharmapp.utils.FunctionalError;
 import com.wdyapplications.pharmapp.utils.Utilities;
+import com.wdyapplications.pharmapp.utils.es.HighClientFactory;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -34,7 +36,11 @@ public class EncryptFilter implements Filter {
     @Autowired
     private SettingRepository settingRepository;
     @Autowired
+    private HighClientFactory highClientFactory;
+    @Autowired
     private FunctionalError functionalError;
+    @Autowired
+    private UserActivityBusiness userActivityBusiness;
 //    @Autowired
 //    private SettingRepository settingRepository;
 
@@ -52,7 +58,7 @@ public class EncryptFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        slf4jLogger.info("begin doFilter");
+        //slf4jLogger.info("begin doFilter");
         String              resp                = "";
         String              requestValue        = "";
         boolean             ignore              = false;
@@ -64,7 +70,6 @@ public class EncryptFilter implements Filter {
         }
         // reccupération de l'URL
         String uri = httpServletRequest.getRequestURI().toString();
-        slf4jLogger.info("uri: " + uri);
         httpServletResponse.reset();
         String origin = httpServletRequest.getHeader("Origin");
         if (origin != null && !origin.isEmpty()) {
@@ -85,7 +90,6 @@ public class EncryptFilter implements Filter {
             for (int i = 0; i < environment.getActiveProfiles().length; i++) {
                 activeProfiles += environment.getActiveProfiles()[i];
             }
-            slf4jLogger.info("active profile: " + activeProfiles);
             // Check if Active profiles contains profile to ignore
             if (Arrays.stream(environment.getActiveProfiles())
                     .anyMatch(env -> Utilities.PROFILES_TO_IGNORE.contains(env))) {
@@ -93,10 +97,9 @@ public class EncryptFilter implements Filter {
             }
         }
         if (!ignore) {
-            slf4jLogger.info("pas de travail a faire");
-            HttpRequestUtilis.calledEncryptRequestManagement(chain, httpServletRequest, httpServletResponse, uri, requestValue, functionalError, settingRepository);
+            HttpRequestUtilis.calledEncryptRequestManagement(chain, httpServletRequest, httpServletResponse, uri, requestValue, functionalError, settingRepository,userActivityBusiness);
         } else {
-            HttpRequestUtilis.noEncryptRequestThenChainDoFilter(response, chain, httpServletRequest, httpServletResponse, requestValue);
+            HttpRequestUtilis.noEncryptRequestThenChainDoFilter(response, chain, httpServletRequest, httpServletResponse, requestValue, userActivityBusiness);
         }
     }
 }

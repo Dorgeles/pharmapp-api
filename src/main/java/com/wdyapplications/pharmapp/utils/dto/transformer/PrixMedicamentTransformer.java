@@ -35,7 +35,6 @@ public class PrixMedicamentTransformer {
 		dto.setDeletedAt(formatDate(entity.getDeletedAt()));
 		dto.setIsDeleted(entity.getIsDeleted());
 		dto.setCreatedAt(formatDate(entity.getCreatedAt()));
-
 		dto.setStatusId(entity.getStatusId());
 		dto.setUpdatedAt(formatDate(entity.getUpdatedAt()));
 		dto.setUpdatedBy(entity.getUpdatedBy());

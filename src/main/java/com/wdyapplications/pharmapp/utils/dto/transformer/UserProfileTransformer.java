@@ -28,8 +28,8 @@ public class UserProfileTransformer {
 		dto.setId(entity.getId());
 		dto.setFirstname(entity.getFirstname());
 		dto.setLastname(entity.getLastname());
-		dto.setProfilePicture(entity.getProfilePicture());
 		dto.setContact(entity.getContact());
+		dto.setProfilePicture(entity.getProfilePicture());
 		dto.setCreatedBy(entity.getCreatedBy());
 		dto.setDeletedAt(formatDate(entity.getDeletedAt()));
 		dto.setIsDeleted(entity.getIsDeleted());

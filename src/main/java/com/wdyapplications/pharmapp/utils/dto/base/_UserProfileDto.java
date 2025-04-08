@@ -34,6 +34,8 @@ public class _UserProfileDto implements Cloneable {
 	protected String     createdAt            ;
     protected Integer    createdBy            ;
 	protected String     deletedAt            ;
+	//protected Integer    users;
+	protected String usersEmail;
 
 	public Integer getId() {
 		return id;
@@ -298,8 +300,7 @@ public class _UserProfileDto implements Cloneable {
     //----------------------------------------------------------------------
     // ENTITY LINKS FIELD ( RELATIONSHIP )
     //----------------------------------------------------------------------
-	//protected Integer    users;
-	protected String usersEmail;
+
 
 	// Search param
 	protected SearchParam<Integer>  idParam               ;                     

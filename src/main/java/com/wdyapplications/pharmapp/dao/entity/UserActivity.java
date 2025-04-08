@@ -37,11 +37,29 @@ public class UserActivity implements Serializable, Cloneable {
     //----------------------------------------------------------------------
     // ENTITY DATA FIELDS 
     //----------------------------------------------------------------------    
-    @Column(name="activity_type", length=255)
-    private String     activityType ;
+    @Column(name="service_libelle", length=255)
+    private String     serviceLibelle ;
 
     @Column(name="remote_ip", length=255)
     private String     remoteIp     ;
+
+    @Column(name="has_error", length=255)
+    private String     hasError     ;
+
+    @Column(name="uri", length=255)
+    private String     uri     ;
+
+    @Column(name="device_id", length=255)
+    private String     deviceId     ;
+
+    @Column(name="version_number", length=255)
+    private String     versionNumber     ;
+
+    @Column(name="request", columnDefinition = "TEXT")
+    private String     request     ;
+
+    @Column(name="response", columnDefinition = "TEXT")
+    private String     response     ;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="created_at")
@@ -91,12 +109,12 @@ public class UserActivity implements Serializable, Cloneable {
         this.id = id;
     }
 
-    public String getActivityType() {
-        return activityType;
+    public String getServiceLibelle() {
+        return serviceLibelle;
     }
 
-    public void setActivityType(String activityType) {
-        this.activityType = activityType;
+    public void setServiceLibelle(String serviceLibelle) {
+        this.serviceLibelle = serviceLibelle;
     }
 
     public String getRemoteIp() {
@@ -105,6 +123,46 @@ public class UserActivity implements Serializable, Cloneable {
 
     public void setRemoteIp(String remoteIp) {
         this.remoteIp = remoteIp;
+    }
+
+    public String getHasError() {
+        return hasError;
+    }
+
+    public void setHasError(String hasError) {
+        this.hasError = hasError;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getRequest() {
+        return request;
+    }
+
+    public void setRequest(String request) {
+        this.request = request;
+    }
+
+    public String getResponse() {
+        return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
     }
 
     public Date getCreatedAt() {
@@ -137,6 +195,14 @@ public class UserActivity implements Serializable, Cloneable {
 
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public String getVersionNumber() {
+        return versionNumber;
+    }
+
+    public void setVersionNumber(String versionNumber) {
+        this.versionNumber = versionNumber;
     }
 
     public Integer getStatusId() {
