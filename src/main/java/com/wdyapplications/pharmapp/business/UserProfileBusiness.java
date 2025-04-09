@@ -210,6 +210,7 @@ public class UserProfileBusiness implements IBasicBusiness<Request<UserProfileDt
 				newDto.setLastname(dto.getLastname());
 				newDto.setProfilePicture(dto.getProfilePicture());
 				newDto.setImages(dto.getImages());
+				newDto.setContact(dto.getContact());
 
 				Request<UserProfileDto> requestUserProfile = new Request<UserProfileDto>();
 				requestUserProfile.setDatas(Arrays.asList(newDto));
