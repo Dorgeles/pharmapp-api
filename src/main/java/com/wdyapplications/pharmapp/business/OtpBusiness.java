@@ -80,33 +80,21 @@ public class OtpBusiness implements IBasicBusiness<Request<OtpDto>, Response<Otp
 			fieldsToVerify.put("codeOtp", dto.getCodeOtp());
 			fieldsToVerify.put("identifier", dto.getIdentifier());
 			fieldsToVerify.put("origineElementId", dto.getOrigineElementId());
-			fieldsToVerify.put("isExpired", dto.getIsExpired());
-			fieldsToVerify.put("expireOn", dto.getExpireOn());
-			fieldsToVerify.put("token", dto.getToken());
-			fieldsToVerify.put("deletedAt", dto.getDeletedAt());
-			fieldsToVerify.put("commentaire", dto.getCommentaire());
-			fieldsToVerify.put("statusId", dto.getStatusId());
 			if (!Validate.RequiredValue(fieldsToVerify).isGood()) {
 				response.setStatus(functionalError.FIELD_EMPTY(Validate.getValidate().getField(), locale));
 				response.setHasError(true);
 				return response;
 			}
-
 			// Verify if otp to insert do not exist
 			Otp existingEntity = null;
 
-/*
-			if (existingEntity != null) {
-				response.setStatus(functionalError.DATA_EXIST("otp id -> " + dto.getId(), locale));
-				response.setHasError(true);
-				return response;
-			}
-
-*/
-				Otp entityToSave = null;
+			Otp entityToSave = null;
 			entityToSave = OtpTransformer.toEntity(dto);
 			entityToSave.setCreatedBy(request.getUser());
+			entityToSave.setIsExpired(false);
 			entityToSave.setIsDeleted(false);
+			entityToSave.setToken(UUID.randomUUID().toString());
+			entityToSave.setExpireOn(Utilities.addMinutes(Utilities.getCurrentDate(), 2));
 			entityToSave.setCreatedAt(Utilities.getCurrentDate());
 			entityToSave.setStatusId(StatusEnum.ACTIVE);
 			items.add(entityToSave);
@@ -143,6 +131,66 @@ public class OtpBusiness implements IBasicBusiness<Request<OtpDto>, Response<Otp
 
 		// System.out.println("----end create Otp-----");
 		return response;
+	}
+
+
+	public Response<OtpDto> confirmOtp(Request<OtpDto> request, Locale locale) throws Exception {
+		// System.out.println("----begin confirm Otp-----");
+		Response<OtpDto> response = new Response<OtpDto>();
+		OtpDto dto = request.getData();
+		// vérifier que les fields sont la
+		Map<String, Object> fieldsToVerify = new HashMap<String, Object>();
+		fieldsToVerify.put("codeOtp", dto.getCodeOtp());
+		if (!Validate.RequiredValue(fieldsToVerify).isGood()) {
+			response.setStatus(functionalError.FIELD_EMPTY(Validate.getValidate().getField(), locale));
+			response.setHasError(true);
+			return response;
+		}
+		List<Otp> existingOtps = new ArrayList<>();
+		existingOtps = otpRepository.findByCodeOtp(dto.getCodeOtp(), Boolean.FALSE);
+		if (!Utilities.isNotEmpty(existingOtps)) {
+			response.setStatus(functionalError.DATA_NOT_EXIST("otp token -> " + dto.getCodeOtp(), locale));
+			response.setHasError(true);
+			return response;
+		}
+		Otp foundEntity = null;
+		for (Otp otp : existingOtps) {
+			if (Objects.equals(otp.getCodeOtp(), dto.getCodeOtp())) {
+				foundEntity = otp;
+			}
+		}
+		if (foundEntity == null) {
+			response.setStatus(functionalError.DATA_NOT_EXIST("otp -> " + dto.getToken(), locale));
+			response.setHasError(true);
+			return response;
+		}
+		if (foundEntity.getIsExpired() == Boolean.TRUE) {
+			Status status = new Status();
+			status.setCode("974");
+			status.setMessage("Code OTP expiré, merci de bien vouloir relancer la procedure");
+			response.setStatus(status);
+			response.setHasError(true);
+			return response;
+		}
+		if (foundEntity.getExpireOn().before(Utilities.getCurrentDate())) {
+			Status status = new Status();
+			status.setCode("974");
+			status.setMessage("Code OTP expiré, merci de bien vouloir relancer la procedure");
+			response.setStatus(status);
+			response.setHasError(true);
+			return response;
+		}
+		Otp savedEntity = null;
+		foundEntity.setExpired(Boolean.TRUE);
+		savedEntity = otpRepository.save(foundEntity);
+		Status status = new Status();
+		status.setCode("800");
+		status.setMessage("Opération effectuée avec succes.");
+		OtpDto responseDto = this.getFullInfos(OtpTransformer.toDto(savedEntity),1, false,locale);
+		response.setItems(Arrays.asList(responseDto));
+		response.setHasError(false);
+		response.setStatus(status);
+		return  response;
 	}
 
 	/**
@@ -361,7 +409,7 @@ public class OtpBusiness implements IBasicBusiness<Request<OtpDto>, Response<Otp
 	 */
 	private OtpDto getFullInfos(OtpDto dto, Integer size, Boolean isSimpleLoading, Locale locale) throws Exception {
 		// put code here
-
+		dto.setCodeOtp(null);
 		if (Utilities.isTrue(isSimpleLoading)) {
 			return dto;
 		}

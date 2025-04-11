@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Integer>, _UsersRepository {
-    @Query("select e from Users e  WHERE (e.username LIKE %:search% OR e.email LIKE %:search%) and e.isDeleted = :isDeleted")
+    @Query("select e from Users e  WHERE (LOWER(e.username) LIKE LOWER(CONCAT('%', :search, '%')) OR LOWER(e.email) LIKE LOWER(CONCAT('%', :search, '%')))  and e.isDeleted = :isDeleted")
     List<Users> findExistingUsersFromSearch(@Param("search")String search, @Param("isDeleted")Boolean isDeleted);
 
 }

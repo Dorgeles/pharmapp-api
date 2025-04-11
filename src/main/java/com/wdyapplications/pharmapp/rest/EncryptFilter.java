@@ -99,7 +99,7 @@ public class EncryptFilter implements Filter {
         if (!ignore) {
             HttpRequestUtilis.calledEncryptRequestManagement(chain, httpServletRequest, httpServletResponse, uri, requestValue, functionalError, settingRepository,userActivityBusiness);
         } else {
-            HttpRequestUtilis.noEncryptRequestThenChainDoFilter(response, chain, httpServletRequest, httpServletResponse, requestValue, userActivityBusiness);
+            HttpRequestUtilis.noEncryptRequestThenChainDoFilter(response, chain, httpServletRequest, requestValue);
         }
     }
 }

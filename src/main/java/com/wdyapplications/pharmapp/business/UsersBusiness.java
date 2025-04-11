@@ -221,7 +221,7 @@ public class UsersBusiness implements IBasicBusiness<Request<UsersDto>, Response
 				OtpDto otpDto = new OtpDto();
 				otpDto.setIdentifier(userNormal.getUsername());
 				otpDto.setOrigineElementId(1);
-
+				otpDto.setCodeOtp(String.valueOf((int) (Math.random() * 9000) + 1000));
 				Request<OtpDto> otpDtoRequest = new Request<OtpDto>();
 				otpDtoRequest.setUser(userNormal.getId());
 				otpDtoRequest.setDatas(Arrays.asList(otpDto));
@@ -402,25 +402,44 @@ public class UsersBusiness implements IBasicBusiness<Request<UsersDto>, Response
 			Users    users               = null;
 			if (dto != null) {
 				HashMap<String, Object> fieldsToVerify = new HashMap<>();
-				fieldsToVerify.put("oldPassword", dto.getOldPassword());
+				fieldsToVerify.put("token", dto.getToken()); //
 				fieldsToVerify.put("password", dto.getPassword());
-				fieldsToVerify.put("email", dto.getEmail());
 				if (!Validate.RequiredValue(fieldsToVerify).isGood()) {
 					response.setStatus(functionalError.FIELD_EMPTY(Validate.getValidate().getField(), locale));
 					response.setHasError(true);
 					return response;
 				}
-
-				users = usersRepository.findByEmail(dto.getEmail(), false);
+				List<Otp> validOtps = null;
+				validOtps = otpRepository.findByToken(dto.getToken(), false);
+				if (Utilities.isEmpty(validOtps)) {
+					Status status = new Status();
+					status.setCode("444");
+					status.setMessage("Action réfusée: vous n'avez pas de demande de changement de mot de passe valide");
+					response.setStatus(status);
+					response.setHasError(Boolean.TRUE);
+					return response;
+				}
+				for (Otp otp : validOtps) {
+					if (otp.getIsExpired() == Boolean.FALSE) {
+						Status status = new Status();
+						status.setCode("444");
+						status.setMessage("Action réfusée: vous n'avez pas de demande de changement de mot de passe valide");
+						response.setStatus(status);
+						response.setHasError(Boolean.TRUE);
+						return response;
+					}
+				}
+				users = usersRepository.findOne(validOtps.get(0).getCreatedBy(), false);
 				if (users == null) {
 					response.setStatus(functionalError.DATA_NOT_EXIST(
 							"Action refusée : Utilisateur n'existe pas", locale));
 					response.setHasError(Boolean.TRUE);
 					return response;
 				}
-				boolean isPasswordMatch = passwordUtils.matches(dto.getOldPassword(), users.getPassword());
-				if (!isPasswordMatch) {
-					response.setStatus(functionalError.AUTH_FAIL("Mot de passe incorrect" , locale));
+				//String dec = passwordUtils.decryptPassword(users.getPassword());
+				boolean isPasswordMatch = passwordUtils.matches(dto.getPassword(), users.getPassword());
+				if (isPasswordMatch) {
+					response.setStatus(functionalError.AUTH_FAIL("Vos mots de passe sont identique" , locale));
 					response.setHasError(Boolean.TRUE);
 					return response;
 				}

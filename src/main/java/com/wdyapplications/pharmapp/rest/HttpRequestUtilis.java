@@ -168,7 +168,7 @@ public class HttpRequestUtilis {
     }
 
 
-    public static void noEncryptRequestThenChainDoFilter(ServletResponse response, FilterChain chain, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,  String requestValue, UserActivityBusiness userActivityBusiness)
+    public static void noEncryptRequestThenChainDoFilter(ServletResponse response, FilterChain chain, HttpServletRequest httpServletRequest, String requestValue)
             throws IOException, ServletException {
         JSONObject reqToJson;
         reqToJson = new JSONObject(requestValue);
@@ -179,13 +179,9 @@ public class HttpRequestUtilis {
         String requestValueLog = reqToJson.toString();
         HttpServletRequestWritableWrapper requestWrapper = new HttpServletRequestWritableWrapper(
                 httpServletRequest, requestValueLog.getBytes());
-        HttpServletResponseReadableWrapper responseWrapper = new HttpServletResponseReadableWrapper(
-                httpServletResponse);
         //httpServletRequest.getRequestURI()
 
-        chain.doFilter(requestWrapper, responseWrapper);
-        String responseValueLog = responseWrapper.getResponseData();
-
+        chain.doFilter(requestWrapper, response);
     }
 
     public static String ExtractRequest(ServletRequest request) {

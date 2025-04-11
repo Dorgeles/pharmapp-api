@@ -240,6 +240,13 @@ public class Utilities {
 		return new Date();
 	}
 
+	public static Date addMinutes(Date date, int minutes) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.MINUTE, minutes);
+		return calendar.getTime();
+	}
+
 	public static boolean areEquals(Object obj1, Object obj2) {
 		return (Objects.equals(obj1, obj2));
 	}

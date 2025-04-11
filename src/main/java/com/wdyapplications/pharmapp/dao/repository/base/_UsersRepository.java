@@ -42,7 +42,7 @@ public interface _UsersRepository {
      * @return An Object Users whose username is equals to the given username. If
      *         no Users is found, this method returns null.
      */
-    @Query("select e from Users e where e.username = :username and e.isDeleted = :isDeleted")
+    @Query("select e from Users e where (LOWER(e.username) LIKE LOWER(CONCAT('%', :username, '%')) OR LOWER(e.email) LIKE LOWER(CONCAT('%', :username, '%')))  and e.isDeleted = :isDeleted")
     List<Users> findByUsername(@Param("username")String username, @Param("isDeleted")Boolean isDeleted);
     /**
      * Finds Users by using password as a search criteria.

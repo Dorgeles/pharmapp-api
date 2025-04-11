@@ -21,6 +21,9 @@ import com.wdyapplications.pharmapp.utils.enums.FunctionalityEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.util.Locale;
+
 /**
 Controller for table "otp"
  * 
@@ -67,6 +70,14 @@ public class OtpController {
     	// System.out.println("start method /otp/getByCriteria");
         Response<OtpDto> response = controllerFactory.getByCriteria(otpBusiness, request, FunctionalityEnum.VIEW_OTP);
 		// System.out.println("end method /otp/getByCriteria");
+        return response;
+    }
+
+    @RequestMapping(value="/confirmOtp",method=RequestMethod.POST,consumes = {"application/json"},produces={"application/json"})
+    public Response<OtpDto> confirmOtp(@RequestBody Request<OtpDto> request) throws Exception {
+        // System.out.println("start method /otp/getByCriteria");
+        Response<OtpDto> response = otpBusiness.confirmOtp(request, Locale.FRENCH);
+        //System.out.println(response.getItems().toString());
         return response;
     }
 }
