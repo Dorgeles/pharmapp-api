@@ -69,4 +69,17 @@ public class SettingController {
 		// System.out.println("end method /setting/getByCriteria");
         return response;
     }
+    @RequestMapping(value="/getAppInfo",method=RequestMethod.GET,produces={"application/json"})
+    public Response<SettingDto> getByCriteria() {
+        Request<SettingDto> request = new Request<>();
+        SettingDto dto = new SettingDto();
+        dto.setCode("app-text");
+        request.setUser(1);
+        request.setIsSimpleLoading(true);
+        request.setData(dto);
+        // System.out.println("start method /setting/getByCriteria");
+        Response<SettingDto> response = controllerFactory.getByCriteria(settingBusiness, request, FunctionalityEnum.VIEW_SETTING);
+        // System.out.println("end method /setting/getByCriteria");
+        return response;
+    }
 }

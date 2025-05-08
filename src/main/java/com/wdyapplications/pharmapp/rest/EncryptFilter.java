@@ -10,6 +10,7 @@ import com.wdyapplications.pharmapp.dao.repository.SettingRepository;
 import com.wdyapplications.pharmapp.utils.FunctionalError;
 import com.wdyapplications.pharmapp.utils.Utilities;
 import com.wdyapplications.pharmapp.utils.es.HighClientFactory;
+import com.wdyapplications.pharmapp.utils.redis.CacheUtils;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -41,6 +42,8 @@ public class EncryptFilter implements Filter {
     private FunctionalError functionalError;
     @Autowired
     private UserActivityBusiness userActivityBusiness;
+    @Autowired
+    private CacheUtils redisRepository;
 //    @Autowired
 //    private SettingRepository settingRepository;
 
@@ -97,7 +100,7 @@ public class EncryptFilter implements Filter {
             }
         }
         if (!ignore) {
-            HttpRequestUtilis.calledEncryptRequestManagement(chain, httpServletRequest, httpServletResponse, uri, requestValue, functionalError, settingRepository,userActivityBusiness);
+            HttpRequestUtilis.calledEncryptRequestManagement(chain, httpServletRequest, httpServletResponse, uri, requestValue, functionalError, settingRepository,userActivityBusiness, redisRepository);
         } else {
             HttpRequestUtilis.noEncryptRequestThenChainDoFilter(response, chain, httpServletRequest, requestValue);
         }

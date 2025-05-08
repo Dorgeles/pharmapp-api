@@ -12,6 +12,7 @@ import com.wdyapplications.pharmapp.utils.dto.UserActivityDto;
 import com.wdyapplications.pharmapp.utils.dto.UsersDto;
 import com.wdyapplications.pharmapp.utils.es.EsUtils;
 import com.wdyapplications.pharmapp.utils.es.HighClientFactory;
+import com.wdyapplications.pharmapp.utils.redis.CacheUtils;
 import com.wdyapplications.pharmapp.utils.security.SecurityUtils;
 import com.google.gson.Gson;
 import jakarta.servlet.FilterChain;
@@ -44,7 +45,7 @@ public class HttpRequestUtilis {
 
 //
     public static void calledEncryptRequestManagement(FilterChain chain, HttpServletRequest httpServletRequest,
-                                                      HttpServletResponse httpServletResponse, String uri, String requestValue, FunctionalError functionalError, SettingRepository settingRepository,UserActivityBusiness userActivityBusiness) throws IOException, ServletException {
+                                                      HttpServletResponse httpServletResponse, String uri, String requestValue, FunctionalError functionalError, SettingRepository settingRepository,UserActivityBusiness userActivityBusiness, CacheUtils cacheUtils) throws IOException, ServletException {
 
         String serviceLibelle   = "";
         String requestValueLog  = "";
@@ -64,6 +65,9 @@ public class HttpRequestUtilis {
             String encryptRequest = requestValue;
             // decrypt request
             decriptRequest = SecurityUtils.ExtractDataFromAesMobile(ExtractData(encryptRequest));
+            String redisKey = decriptRequest + uri;
+            redisKey = Utilities.normalizeName(redisKey);
+            redisKey = Base64.getEncoder().encodeToString(redisKey.getBytes());
             // build request to send
             String responseToPublish = "";
             reqToJson = Utilities.notBlank(decriptRequest) ? new JSONObject(decriptRequest) : new JSONObject();
@@ -103,15 +107,24 @@ public class HttpRequestUtilis {
                         httpServletResponse);
                 chain.doFilter(requestWrapper, responseWrapper);
                 responseValueLog = responseWrapper.getResponseData();
-                resp             = responseValueLog;
+
+                //si l'uri fais parti des uri cacheable
+                Object cachedData = cacheUtils.getCachedData(redisKey);
+                if (  cachedData != null){
+                    responseValueLog = (String) cachedData;
+                }else {
+                    if ( Utilities.isKpisCacheable(uri) ){
+                        cacheUtils.cacheData(redisKey, responseValueLog, 15);
+                    }
+                }
                 // System.out.println("responseValueLog " + responseValueLog);
-                responseToPublish = SecurityUtils.EncryptResponseMobile(resp);
+                responseToPublish = SecurityUtils.EncryptResponseMobile(responseValueLog);
             }
             publishResponse(responseToPublish, httpServletResponse);
         } catch (Exception e) {
             responseValueLog = e.getMessage();
         } finally {
-            logRequest(uri, user.getId(), serviceLibelle, ipAddress, responseValueLog, decriptRequest, versionNumber, deviceId, userActivityBusiness);
+            logRequest(uri, user.getId(), serviceLibelle, ipAddress, responseValueLog, requestValue, versionNumber, deviceId, userActivityBusiness);
         }
     }
 
@@ -172,6 +185,7 @@ public class HttpRequestUtilis {
             throws IOException, ServletException {
         JSONObject reqToJson;
         reqToJson = new JSONObject(requestValue);
+
         // TODO: ajout du ipAdress et la cookies ayant mener l'action dans la requête
         reqToJson.put("ipAddress", Utilities.getClientIp(httpServletRequest));
         reqToJson.put("cookies", httpServletRequest.getHeader("cookies"));
@@ -180,7 +194,6 @@ public class HttpRequestUtilis {
         HttpServletRequestWritableWrapper requestWrapper = new HttpServletRequestWritableWrapper(
                 httpServletRequest, requestValueLog.getBytes());
         //httpServletRequest.getRequestURI()
-
         chain.doFilter(requestWrapper, response);
     }
 
@@ -293,7 +306,6 @@ public class HttpRequestUtilis {
 //                    );
                 } catch (Exception e)
                 {
-
                     e.printStackTrace();
                 }
             }

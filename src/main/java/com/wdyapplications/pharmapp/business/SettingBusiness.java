@@ -20,6 +20,7 @@ import com.wdyapplications.pharmapp.utils.dto.*;
 import com.wdyapplications.pharmapp.utils.dto.transformer.*;
 import com.wdyapplications.pharmapp.utils.enums.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wdyapplications.pharmapp.utils.redis.CacheUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
@@ -43,6 +44,8 @@ public class SettingBusiness implements IBasicBusiness<Request<SettingDto>, Resp
 	private Response<SettingDto> response;
 	@Autowired
 	private SettingRepository settingRepository;
+	@Autowired
+	private CacheUtils redisRepository;
 	@Autowired
 	private FunctionalError functionalError;
 	@Autowired
@@ -306,9 +309,13 @@ public class SettingBusiness implements IBasicBusiness<Request<SettingDto>, Resp
 	 */
 	@Override
 	public Response<SettingDto> getByCriteria(Request<SettingDto> request, Locale locale)  throws Exception {
-		// System.out.println("----begin get Setting-----");
-
 		Response<SettingDto> response = new Response<SettingDto>();
+		// System.out.println("----begin get Setting-----");
+		String catchedData = redisRepository.getCachedString(request.toString());
+		if (Utilities.notBlank(catchedData)) {
+			// System.out.println("----get Setting from redis-----");
+			return response;
+		}
 		List<Setting> items 			 = settingRepository.getByCriteria(request, em, locale);
 
 		if (items != null && !items.isEmpty()) {
@@ -336,8 +343,6 @@ public class SettingBusiness implements IBasicBusiness<Request<SettingDto>, Resp
 			response.setHasError(false);
 			return response;
 		}
-
-		// System.out.println("----end get Setting-----");
 		return response;
 	}
 

@@ -13,6 +13,7 @@ import com.wdyapplications.pharmapp.utils.enums.OperatorEnum;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.LocaleUtils;
+import org.apache.commons.lang.NullArgumentException;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.joda.time.format.DateTimeFormat;
@@ -63,6 +64,38 @@ public class Utilities {
 		DataInputStream inputStream = new DataInputStream(input);
 		return new BufferedReader(new InputStreamReader(inputStream));
 	}
+
+	public static final List<String> URI_KPI_CACHEABLE = Arrays.asList(
+			"/setting/getByCriteria");
+
+	public static boolean isKpisCacheable(String uri) {
+//		return URI_KPI_CACHEABLE.stream().anyMatch(uri::startsWith);
+		return URI_KPI_CACHEABLE.stream().anyMatch(uri::startsWith);
+	}
+	public static boolean isKpisCacheable(StringBuffer uri) {
+		return URI_KPI_CACHEABLE.stream().anyMatch(uri.toString()::startsWith);
+	}
+
+
+
+
+	public static String normalizeName(String fileName) {
+		if (fileName == null) {
+			throw new NullArgumentException("fileName");
+		}
+		String fileNormalize = null;
+		fileNormalize = fileName.trim().replaceAll("\\s+", "_");
+		fileNormalize = fileNormalize.replace("'", "");
+		fileNormalize = fileNormalize.replace("`", "");
+		fileNormalize = fileNormalize.replace("-", "_");
+		fileNormalize = Normalizer.normalize(fileNormalize, Normalizer.Form.NFD);
+		fileNormalize = fileNormalize.replaceAll("[^\\p{ASCII}]", "");
+		fileNormalize = fileNormalize.replaceAll("[^-a-zA-Z0-9_\\-\\.]", "");
+
+		return fileNormalize.toLowerCase();
+	}
+
+
 	public static String readJsonDefn(String url) throws Exception {
 		// implement it the way you like
 		StringBuffer   bufferJSON = new StringBuffer();

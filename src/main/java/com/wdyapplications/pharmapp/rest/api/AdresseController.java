@@ -18,8 +18,11 @@ import com.wdyapplications.pharmapp.utils.contract.Request;
 import com.wdyapplications.pharmapp.utils.contract.Response;
 import com.wdyapplications.pharmapp.utils.dto.*;
 import com.wdyapplications.pharmapp.utils.enums.FunctionalityEnum;
+import com.wdyapplications.pharmapp.utils.redis.CacheUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
 Controller for table "adresse"
@@ -37,6 +40,8 @@ public class AdresseController {
     private ControllerFactory<AdresseDto> controllerFactory;
 	@Autowired
 	private AdresseBusiness adresseBusiness;
+    @Autowired
+    private CacheUtils redisRepository;
 
 	@RequestMapping(value="/create",method=RequestMethod.POST,consumes = {"application/json"},produces={"application/json"})
     public Response<AdresseDto> create(@RequestBody Request<AdresseDto> request) {
@@ -52,6 +57,13 @@ public class AdresseController {
         Response<AdresseDto> response = controllerFactory.update(adresseBusiness, request, FunctionalityEnum.UPDATE_ADRESSE);
 		// System.out.println("end method /adresse/update");
         return response;
+    }
+
+    @RequestMapping(value="/try",method=RequestMethod.POST,consumes = {"application/json"},produces={"application/json"})
+    public String tryConnection(@RequestBody Map<String, String> request) {
+    	// System.out.println("start method /adresse/try");
+        redisRepository.cacheData("test", "test", 1);
+        return "success";
     }
 
 	@RequestMapping(value="/delete",method=RequestMethod.POST,consumes = {"application/json"},produces={"application/json"})
